@@ -32,6 +32,19 @@ export class PokemonService {
     
   }
 
+  async createMany(createPokemonDtos: CreatePokemonDto[]) {
+    try{
+      const pokemon = await this.pokemonModel.insertMany(createPokemonDtos);
+
+      return pokemon;
+
+    }catch(err){
+      console.log(err);
+      throw new InternalServerErrorException(`Can't create many Pokemons - Check server logs`);
+    }
+
+  }
+
   findAll() {
     return `This action returns all pokemon`;
   }
@@ -92,11 +105,20 @@ export class PokemonService {
     return "delete OK";
   }
 
-  // async remove(id: string) {
-  //   const pokemonDb = await this.findOne(id);
-  //   await pokemonDb.deleteOne();
-  //   return `This action removes a #${id} pokemon`;
-  // }
+  async remove2(id: string) {
+
+    const pokemonDb = await this.findOne(id);
+    await pokemonDb.deleteOne();
+
+    return "delete OK";
+  }
+
+  async removeAll() {
+
+    await this.pokemonModel.deleteMany();
+    
+    return "delete OK";
+  }
 
   private handleExceptions(error: any){
     if(error.code === 11000){
