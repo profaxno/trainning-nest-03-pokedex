@@ -5,6 +5,7 @@ import { Model, isValidObjectId } from 'mongoose';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { Pokemon } from './entities/pokemon.entity';
+import { PaginationDto } from '../common/dto/pagination.dto';
 
 @Injectable()
 export class PokemonService {
@@ -45,8 +46,16 @@ export class PokemonService {
 
   }
 
-  findAll() {
-    return `This action returns all pokemon`;
+  async findAll(paginationDto: PaginationDto) {
+
+    const {limit=10, page=0} = paginationDto;
+
+    const pokemons = await this.pokemonModel.find()
+      .limit(limit)
+      .skip(page*limit)//se multiplica la pagina por el limit para "saltarse" esa cantidad de registros y simular que paso de pagina
+      .sort({no: 1})
+
+    return pokemons;
   }
 
   async findOne(value: String) {
