@@ -18,6 +18,14 @@ async function bootstrap() {
     })
   )
   
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
+
+  console.log(`
+    Listening at PORT: ${process.env.PORT}
+    @org: Profaxno Company.
+    @address: Santiago, Chile.
+    @enviroment: ${process.env.ENV}
+
+    pokedex running...`);
 }
 bootstrap();

@@ -1,0 +1,6 @@
+ENV=dev
+MONGODB=mongodb://localhost:27017/nest-pokemon
+PORT=3000
+DEFAULT_LIMIT=100
+POKE_URL=https://pokeapi.co/api/v2/pokemon
+
