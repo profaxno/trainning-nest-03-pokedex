@@ -38,6 +38,16 @@ localhost:3000/api/v1/seed
 * MongoDB
 * Nest
 
+# Produccion (Build)
+1. Crear imagen
+```
+docker-compose -f docker-compose.yaml --env-file .env up --build
+```
+
+Nota: para arrancar la app y la bd utilizar el siguiente comando en un docker local ```docker-compose -f docker-compose.yaml --env-file .env up -d```
+
+
+
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest

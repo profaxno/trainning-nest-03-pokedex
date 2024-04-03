@@ -1,4 +1,4 @@
-import { IsInt, IsPositive, IsString, Min, MinLength } from "class-validator";
+import { IsInt, IsOptional, IsPositive, IsString, Min, MinLength } from "class-validator";
 
 
 export class CreatePokemonDto {
